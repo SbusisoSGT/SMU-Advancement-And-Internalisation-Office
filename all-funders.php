@@ -1,5 +1,5 @@
 <?php
-    require_once("api/fetchFundersDetails.php");
+    require_once("api/fetchAllFunders.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,22 +31,22 @@
             while($funder = $results->fetch_assoc()){
             
                 echo "<tr>";
-                    echo "<th>".($funder['id'])."</th>";
-                    echo "<th>".$funder['name']."</th>";
-                    echo "<th>".$funder['email']."</th>";
-                    echo "<th>".$funder['mobile_numbers']."</th>";
+                    echo "<td>".($funder['id'])."</td>";
+                    echo "<td>".$funder['name']."</td>";
+                    echo "<td>".$funder['email']."</td>";
+                    echo "<td>".$funder['mobile_numbers']."</td>";
 
-                    echo "<th>";
+                    echo "<td>";
                     echo "<a href='show-funder.php?id=".$funder['id']."' style='margin-right: .5rem'>
-                            <button type='submit' class='btn btn-primary'>View</button>
+                            <button type='submit' class='btn btn-success'>View</button>
                         </a>";
                     echo "<a href='edit-funder.php?id=".$funder['id']."' style='margin-right: .5rem'>
-                            <button type='submit' class='btn btn-success'>Edit</button>
+                            <button type='submit' class='btn btn-warning'>Edit</button>
                         </a>";
-                    echo "<a href='delete-funder.php?id=".$funder['id']."' style='margin-right: .5rem'>
+                    echo "<a href='api/deleteFunder.php?id=".$funder['id']."' style='margin-right: .5rem'>
                             <button type='submit' class='btn btn-danger'>Delete</button>
                         </a>";
-                    echo "</th>";
+                    echo "</td>";
                 echo "</tr>";
             }
         ?>

@@ -1,5 +1,5 @@
 <?php
-    $results = require_once("api/fetchOneFunderDetails.php");
+    $results = require_once("api/fetchFunder.php");
     $funder = $results->fetch_assoc();
 ?>
 <!DOCTYPE html>
@@ -9,11 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/bootstrap/bootstrap.min.css">
-    <title>Store Funders Details</title>
+    <title>Show Funders Details</title>
 </head>
 <body class="container" style="display:flex; align-items: center; flex-direction: column; padding: 2rem;">
     
-    <h1 class="header" style="margin-bottom: 2rem;">Sbusiso</h1>
+    <h1 class="header" style="margin-bottom: 2rem;"><?php echo $funder['name'] ?></h1>
+    <h3 class="header">Donations</h3>
     <?php
         echo "<a href='make-donation.php?id=".$funder['id']."' style='align-self: flex-end; margin-bottom: 1rem;'>";
 	?>	
@@ -24,23 +25,19 @@
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Numbers</th>
-                <th>Action</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
+
+                <!-- <td>1</td>
+                <td>EFT</td>
+                <td>Some books and stuff</td>
+                <td>09/May/2021</td> -->
             <tr>
-                <th>1</th>
-                <th>Mercedes Benz SA</th>
-                <th>info@mercedes.co.za</th>
-                <th>0128376453</th>
-                <th>
-                <button type="submit" class="btn btn-primary">View</button>
-                <button type="submit" class="btn btn-success">Update</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-                </th>
+                <td style="transform: translateX(50%)">No donations have been made</td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("../app/FunderController.php");
+	require_once("C:\\xampp\htdocs\SMU-Advancement-And-Internalisation-Office\app\Controllers\FunderController.php");
 
 	if($_SERVER['REQUEST_METHOD'] == "POST" || isset($_POST['csrf'], $_SESSION['csrf']) || $_POST['csrf'] == $_SESSION['csrf']){
 		if(
@@ -24,7 +24,7 @@
 		}
 		
 		setcookie($name, $message, time() + 2, '/');
-		header("Location: http://localhost/SMU-Advancement-And-Internalisation-Office/add-funders.php");
+		header("Location: http://localhost/SMU-Advancement-And-Internalisation-Office/add-funder.php");
 	}else{
 		die("403 Forbidden!");
 	}

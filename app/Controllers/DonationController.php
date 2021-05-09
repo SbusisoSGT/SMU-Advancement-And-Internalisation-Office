@@ -45,4 +45,30 @@
 			
 			return $result;
 		}
+
+		/**
+		* Edits one donation
+		*
+		* @param array $request
+		* @return $result
+		*/
+		public function edit(array $request)
+		{
+			$result = Donation::update($request);
+			
+			return $result;
+		}
+
+		/**
+		* Delete donation instance
+		*
+		* @param int $id
+		* @return void
+		*/
+		public function destroy(int $id)
+		{
+			$result = Donation::delete($id);
+			
+			return $result;
+		}
 	}

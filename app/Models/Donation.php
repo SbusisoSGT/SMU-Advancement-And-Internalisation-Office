@@ -20,7 +20,7 @@
 		}
 		
         /**
-		* Get the database connection to use in this model (DI)
+		* Get all donations 
 		*
 		* @return void
 		*/
@@ -29,7 +29,7 @@
             $database = new Database();
 			$conn = $database->connect();
     
-            $stmt = $conn->prepare("SELECT * FROM ".self::TABLE);
+            $stmt = $conn->prepare("SELECT f.name, d.* FROM donations d JOIN funders f WHERE f.id = d.funder_id");
 			$stmt->execute();
 
 			$result = $stmt->get_result();
@@ -37,8 +37,9 @@
 		}
 
 		/**
-		* Get the database connection to use in this model (DI)
+		* Get single donation instance
 		*
+		* @param int $id
 		* @return void
 		*/
 		public static function find(int $id)
@@ -51,7 +52,6 @@
 			$stmt->execute();
 
 			$result = $stmt->get_result(); 
-			// $user = $result->fetch_assoc();
 			
 			return $result;
 		}
@@ -65,7 +65,7 @@
 		public function setProperties(array $request)
 		{
 			$this->type = htmlspecialchars(strip_tags(trim($request['type'])));
-			$this->description = htmlspecialchars(strip_tags(trim(strtolower($request['description']))));
+			$this->description = htmlspecialchars(strip_tags(trim($request['description'])));
 			$this->funder_id = htmlspecialchars(strip_tags(trim($request['funder_id'])));
 		}
 		
@@ -82,6 +82,45 @@
 				return $stmt->execute();
 			}else
 				echo "Prepare failed: (" . $this->conn->errno . ") " . $this->conn->error;
+		}
+
+		/**
+		* Edit the given instance in the database
+		*
+		* @param array $request
+		* @return void
+		*/
+		public static function update(array $request)
+		{ 
+			$database = new Database();
+			$conn = $database->connect();
+
+			if($stmt = $conn->prepare("UPDATE ".self::TABLE." SET type = ?, description = ? WHERE id = ?")) {			
+				$stmt->bind_param("sss", $request['type'], $request['description'], $request['id']);
+				
+				return $stmt->execute();
+			}else
+				echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+		}
+
+		/**
+		* Delete donation instance
+		*
+		* @param int $id
+		* @return void
+		*/
+		public static function delete(int $id)
+		{
+			$database = new Database();
+			$conn = $database->connect();
+    
+            $stmt = $conn->prepare("DELETE FROM ".self::TABLE." WHERE id = ?");
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+
+			$result = $stmt->get_result(); 
+			
+			return $result;
 		}
 	}
 	

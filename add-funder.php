@@ -16,7 +16,7 @@
 			else if(isset($_COOKIE['error']))
 				echo "<span class='alert alert-danger'>".$_COOKIE['error']."</span>";
 	?>
-    <form action="api/saveFundersDetails.php" method="post" style="width: 60vw; margin-top: 4rem">
+    <form action="api/saveFunder.php" method="post" style="width: 60vw; margin-top: 4rem">
         <label for="name" class="form-label">Name</label>
         <input type="text" name="name" class="form-control" required>
 

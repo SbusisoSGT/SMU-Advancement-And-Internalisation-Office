@@ -83,6 +83,45 @@
 			}else
 				echo "Prepare failed: (" . $this->conn->errno . ") " . $this->conn->error;
 		}
+
+		/**
+		* Edit the given instance in the database
+		*
+		* @param array $request
+		* @return void
+		*/
+		public static function update(array $request)
+		{ 
+			$database = new Database();
+			$conn = $database->connect();
+
+			if($stmt = $conn->prepare("UPDATE ".self::TABLE." SET name = ?, email = ?, mobile_numbers = ? WHERE id = ?")) {			
+				$stmt->bind_param("ssss", $request['name'], $request['email'], $request['mobileNumbers'], $request['id']);
+				
+				return $stmt->execute();
+			}else
+				echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+		}
+
+		/**
+		* Delete funder instance
+		*
+		* @param int $id
+		* @return void
+		*/
+		public static function delete(int $id)
+		{
+			$database = new Database();
+			$conn = $database->connect();
+    
+            $stmt = $conn->prepare("DELETE FROM ".self::TABLE." WHERE id = ?");
+			$stmt->bind_param("i", $id);
+			$stmt->execute();
+
+			$result = $stmt->get_result(); 
+			
+			return $result;
+		}
 	}
 	
 ?>

@@ -45,4 +45,30 @@
 			
 			return $result;
 		}
+
+		/**
+		* Edits one funder
+		*
+		* @param array $request
+		* @return $result
+		*/
+		public function edit(array $request)
+		{
+			$result = Funder::update($request);
+			
+			return $result;
+		}
+
+		/**
+		* Delete funder instance
+		*
+		* @param int $id
+		* @return void
+		*/
+		public function destroy(int $id)
+		{
+			$result = Funder::delete($id);
+			
+			return $result;
+		}
 	}

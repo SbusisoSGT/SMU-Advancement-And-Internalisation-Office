@@ -1,5 +1,5 @@
 <?php
-    require_once("api/fetchFundersDetails.php");
+    require_once("api/fetchAllDonations.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,45 +8,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/bootstrap/bootstrap.min.css">
-    <title>Store Funders Details</title>
+    <title>All Donations</title>
 </head>
 <body class="container" style="display:flex; align-items: center; flex-direction: column; padding: 2rem;">
     
-    <h1 class="header" style="margin-bottom: 2rem;">Funders</h1>
-    <a href="add-funders.php" style="align-self: flex-end; margin-bottom: 1rem;">
-		<button type="submit" class="btn btn-info">Add Funder</button>
-	</a>
+    <h1 class="header" style="margin-bottom: 2rem;">Donations</h1>
     <table class="table">
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Numbers</th>
-                <th>Action</th>
+                <th>Funder</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>
         <?php
-            while($funder = $results->fetch_assoc()){
+            while($donation = $results->fetch_assoc()){
             
                 echo "<tr>";
-                    echo "<th>".($funder['id'])."</th>";
-                    echo "<th>".$funder['name']."</th>";
-                    echo "<th>".$funder['email']."</th>";
-                    echo "<th>".$funder['mobile_numbers']."</th>";
-
-                    echo "<th>";
-                    echo "<a href='show-funder.php?id=".$funder['id']."' style='margin-right: .5rem'>
-                            <button type='submit' class='btn btn-primary'>View</button>
+                    echo "<th>".($donation['id'])."</th>";
+                    echo "<td>".($donation['name'])."</td>";
+                    echo "<td>".$donation['type']."</td>";
+                    echo "<td>".$donation['description']."</td>";
+                    echo "<td>".$donation['timestamp']."</td>";
+                    echo "<td>";
+                    echo "<a href='edit-donation.php?id=".$donation['id']."' style='margin-right: .5rem'>
+                            <button type='submit' class='btn btn-warning'>Edit</button>
                         </a>";
-                    echo "<a href='edit-funder.php?id=".$funder['id']."' style='margin-right: .5rem'>
-                            <button type='submit' class='btn btn-success'>Edit</button>
-                        </a>";
-                    echo "<a href='delete-funder.php?id=".$funder['id']."' style='margin-right: .5rem'>
+                    echo "<a href='api/deleteDonation.php?id=".$donation['id']."' style='margin-right: .5rem'>
                             <button type='submit' class='btn btn-danger'>Delete</button>
                         </a>";
-                    echo "</th>";
+                    echo "</td>";
                 echo "</tr>";
             }
         ?>
