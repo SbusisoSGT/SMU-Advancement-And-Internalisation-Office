@@ -1,7 +1,6 @@
 <?php
-	require_once("C:\\xampp\htdocs\SMU-Advancement-And-Internalisation-Office\app\Config\Database.php");
-	require_once("C:\\xampp\htdocs\SMU-Advancement-And-Internalisation-Office\app\Models\Funder.php");
-
+	require_once(__DIR__.'\..\Config\Database.php');
+	require_once(__DIR__.'\..\Models\Funder.php');
 
 	class FunderController
 	{

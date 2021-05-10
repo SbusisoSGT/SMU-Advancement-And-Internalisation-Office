@@ -13,7 +13,7 @@
 <body class="container" style="display:flex; align-items: center; flex-direction: column; padding: 2rem;">
     
     <h1 class="header" style="margin-bottom: 2rem;">Funders</h1>
-    <a href="add-funders.php" style="align-self: flex-end; margin-bottom: 1rem;">
+    <a href="add-funder.php" style="align-self: flex-end; margin-bottom: 1rem;">
 		<button type="submit" class="btn btn-info">Add Funder</button>
 	</a>
     <table class="table">

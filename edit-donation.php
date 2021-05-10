@@ -1,5 +1,5 @@
 <?php
-    require_once("C:\\xampp\htdocs\SMU-Advancement-And-Internalisation-Office\app\Controllers\FunderController.php");
+    require_once("app\Controllers\FunderController.php");
     $resultsDonation = require_once("api/fetchDonation.php");
      
     $donation = $resultsDonation->fetch_assoc();

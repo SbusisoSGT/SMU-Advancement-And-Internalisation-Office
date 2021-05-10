@@ -1,5 +1,5 @@
 <?php
-	require_once("C:\\xampp\htdocs\SMU-Advancement-And-Internalisation-Office\app\Controllers\DonationController.php");
+	require_once("app\Controllers\DonationController.php");
 
     
     $donationController = new DonationController();

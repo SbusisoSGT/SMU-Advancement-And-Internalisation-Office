@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require_once("C:\\xampp\htdocs\SMU-Advancement-And-Internalisation-Office\app\Controllers\FunderController.php");
+	require_once("..\app\Controllers\FunderController.php");
 
 	if($_SERVER['REQUEST_METHOD'] == "POST"){
 		if(
